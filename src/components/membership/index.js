@@ -14,7 +14,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 const stripePromise = loadStripe(
-  "pk_test_51PWzL7AjtxBvM9mopyutKAmBptuva5L6OzJJZh2T0cYKzINGTY0GJVjngjMlw51QABIvNsO5QTCIJR1vejYwQzpr001IKs9fXZ"
+  `${process.env.NEXT_PUBLIC_SECRET_API}`
 );
 
 function Membership({ profileInfo }) {
