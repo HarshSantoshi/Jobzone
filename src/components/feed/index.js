@@ -9,11 +9,10 @@ import { CirclePlus, Heart } from "lucide-react";
 import { Input } from "../ui/input";
 import { createClient } from "@supabase/supabase-js";
 import { createFeedPostAction, updateFeedPostAction } from "@/actions";
-import Image from "next/image";
 
 const supabaseClient = createClient(
-  "https://ymsijpnegskkoiuerthi.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inltc2lqcG5lZ3Nra29pdWVydGhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQyMzYzNDYsImV4cCI6MjAyOTgxMjM0Nn0.PM7Nr9qTZFEJsf62eHgkFXKGPqt0gfMdFN6SOJjCP6M"
+  `${process.env.NEXT_PUBLIC_SUPABASE_URL}`,
+  `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
 );
 
 function Feed({ user, profileInfo, allFeedPosts }) {
@@ -31,7 +30,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
 
   function handleFetchImagePublicUrl(getData) {
     const { data } = supabaseClient.storage
-      .from("job-board-public")
+      .from("jobzone-bucket")
       .getPublicUrl(getData.path);
 
     console.log(data);
@@ -45,7 +44,7 @@ function Feed({ user, profileInfo, allFeedPosts }) {
 
   async function handleUploadImageToSupabase() {
     const { data, error } = await supabaseClient.storage
-      .from("job-board-public")
+      .from("jobzone-bucket")
       .upload(`/public/${imageData?.name}`, imageData, {
         cacheControl: "3600",
         upsert: false,

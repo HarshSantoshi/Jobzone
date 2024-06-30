@@ -7,6 +7,7 @@ import CommonForm from "../common-form";
 import { initialPostNewJobFormData, postNewJobFormControls } from "@/utils";
 import { postNewJobAction } from "@/actions";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 
 function PostNewJob({ profileInfo, user, jobList }) {
   console.log(jobList, "jobList");
@@ -20,11 +21,10 @@ function PostNewJob({ profileInfo, user, jobList }) {
 
   function handlePostNewBtnValid() {
     return Object.keys(jobFormData).every(
-      (control) => jobFormData[control]?.trim() === ""
+      (control) => jobFormData[control].trim() !== ""
     );
   }
 
-  
   function handleAddNewJob() {
     if (!profileInfo?.isPremiumUser && jobList.length >= 2) {
       toast({

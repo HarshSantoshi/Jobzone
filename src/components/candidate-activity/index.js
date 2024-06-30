@@ -24,7 +24,7 @@ function CandidateActivity({ jobList, jobApplicants }) {
           </h1>
           <TabsList>
             {uniqueStatusArray.map((status) => (
-              <TabsTrigger value={status} key={status}>{status}</TabsTrigger>
+              <TabsTrigger value={status}>{status}</TabsTrigger>
             ))}
           </TabsList>
         </div>
@@ -32,10 +32,7 @@ function CandidateActivity({ jobList, jobApplicants }) {
           <div className="container mx-auto p-0 space-y-8">
             <div className="flex flex-col gap-4">
               {uniqueStatusArray.map((status) => (
-                <TabsContent 
-                value={status}
-                key={status}
-                >
+                <TabsContent value={status}>
                   {jobList
                     .filter(
                       (jobItem) =>
@@ -54,8 +51,6 @@ function CandidateActivity({ jobList, jobApplicants }) {
                         icon={<JobIcon />}
                         title={finalFilteredItem?.title}
                         description={finalFilteredItem?.companyName}
-                        status={status}
-                        key={finalFilteredItem._id}
                       />
                     ))}
                 </TabsContent>

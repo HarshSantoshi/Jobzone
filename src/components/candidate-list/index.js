@@ -10,8 +10,8 @@ import {
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseClient = createClient(
-  "https://ymsijpnegskkoiuerthi.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inltc2lqcG5lZ3Nra29pdWVydGhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTQyMzYzNDYsImV4cCI6MjAyOTgxMjM0Nn0.PM7Nr9qTZFEJsf62eHgkFXKGPqt0gfMdFN6SOJjCP6M"
+  `${process.env.NEXT_PUBLIC_SUPABASE_URL}`,
+  `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
 );
 
 function CandidateList({
@@ -34,7 +34,7 @@ function CandidateList({
 
   function handlePreviewResume() {
     const { data } = supabaseClient.storage
-      .from("job-board-public")
+      .from("jobzone-public")
       .getPublicUrl(currentCandidateDetails?.candidateInfo?.resume);
 
     const a = document.createElement("a");
@@ -69,8 +69,8 @@ function CandidateList({
     <Fragment>
       <div className="grid grid-cols-1 gap-3 p-10 md:grid-cols-2 lg:grid-cols-3">
         {jobApplications && jobApplications.length > 0
-          ? jobApplications.map((jobApplicantItem,index) => (
-              <div key={index} className="bg-white shadow-lg w-full max-w-sm rounded-lg overflow-hidden mx-auto mt-4">
+          ? jobApplications.map((jobApplicantItem) => (
+              <div className="bg-white shadow-lg w-full max-w-sm rounded-lg overflow-hidden mx-auto mt-4">
                 <div className="px-4 my-6 flex justify-between items-center">
                   <h3 className="text-lg font-bold dark:text-black">
                     {jobApplicantItem?.name}
@@ -126,8 +126,8 @@ function CandidateList({
               <div className="flex flex-wrap items-center gap-4 mt-6">
                 {currentCandidateDetails?.candidateInfo?.previousCompanies
                   .split(",")
-                  .map((skillItem,index) => (
-                    <div key={index} className="w-[100px] dark:bg-white flex justify-center items-center h-[35px] bg-black rounded-[4px]">
+                  .map((skillItem) => (
+                    <div className="w-[100px] dark:bg-white flex justify-center items-center h-[35px] bg-black rounded-[4px]">
                       <h2 className="text-[13px]  dark:text-black font-medium text-white">
                         {skillItem}
                       </h2>
@@ -138,10 +138,8 @@ function CandidateList({
             <div className="flex flex-wrap gap-4 mt-6">
               {currentCandidateDetails?.candidateInfo?.skills
                 .split(",")
-                .map((skillItem,index) => (
-                  <div 
-                  key={index}
-                   className="w-[100px] dark:bg-white flex justify-center items-center h-[35px] bg-black rounded-[4px]">
+                .map((skillItem) => (
+                  <div className="w-[100px] dark:bg-white flex justify-center items-center h-[35px] bg-black rounded-[4px]">
                     <h2 className="text-[13px] dark:text-black font-medium text-white">
                       {skillItem}
                     </h2>

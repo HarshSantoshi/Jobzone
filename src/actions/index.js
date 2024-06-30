@@ -8,7 +8,7 @@ import Profile from "@/models/profile";
 import { revalidatePath } from "next/cache";
 
 const stripe = require("stripe")(
-  `${process.env.SECRET_KEY}`
+  `${process.env.NEXT_PUBLIC_SECRET_KEY}`
 );
 
 //create profile action

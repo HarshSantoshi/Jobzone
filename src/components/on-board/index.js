@@ -14,8 +14,8 @@ import { createProfileAction } from "@/actions";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseClient = createClient(
-  "https://jqrfotourjvoqfikxuav.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxcmZvdG91cmp2b3FmaWt4dWF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk1Nzk3OTAsImV4cCI6MjAzNTE1NTc5MH0.BbkglaLBW0u4V3ISrdVwp-Re3dWRVOxfq3ZlcFVYnmA"
+  `${process.env.NEXT_PUBLIC_SUPABASE_URL}`,
+  `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
 );
 
 function OnBoard() {
@@ -38,7 +38,7 @@ function OnBoard() {
 
   async function handleUploadPdfToSupabase() {
     const { data, error } = await supabaseClient.storage
-      .from("Jobzone-bucket")
+      .from("jobzone-public")
       .upload(`/public/${file.name}`, file, {
         cacheControl: "3600",
         upsert: false,

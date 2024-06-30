@@ -116,8 +116,8 @@ function CandidateJobCard({ jobItem, profileInfo, jobApplications }) {
             Experience: {jobItem?.experience} year
           </h3>
           <div className="flex gap-4 mt-6">
-            {jobItem?.skills.split(",").map((skillItem,index) => (
-              <div key={index} className="w-[100px] flex justify-center items-center h-[35px] dark:bg-white  bg-black rounded-[4px]">
+            {jobItem?.skills.split(",").map((skillItem) => (
+              <div className="w-[100px] flex justify-center items-center h-[35px] dark:bg-white  bg-black rounded-[4px]">
                 <h2 className="text-[13px] font-medium text-white dark:text-black ">
                   {skillItem}
                 </h2>

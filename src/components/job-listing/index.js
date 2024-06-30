@@ -84,8 +84,8 @@ function JobListing({
           <div className="flex items-center">
             {profileInfo?.role === "candidate" ? (
               <Menubar>
-                {filterMenus.map((filterMenu , index) => (
-                  <MenubarMenu key={index}>
+                {filterMenus.map((filterMenu) => (
+                  <MenubarMenu>
                     <MenubarTrigger>{filterMenu.name}</MenubarTrigger>
                     <MenubarContent>
                       {filterMenu.options.map((option, optionIdx) => (
@@ -129,17 +129,15 @@ function JobListing({
               <div className="container mx-auto p-0 space-y-8">
                 <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
                   {jobList && jobList.length > 0
-                    ? jobList.map((jobItem , index) =>
+                    ? jobList.map((jobItem) =>
                         profileInfo?.role === "candidate" ? (
                           <CandidateJobCard
-                          key={index}
                             profileInfo={profileInfo}
                             jobItem={jobItem}
                             jobApplications={jobApplications}
                           />
                         ) : (
                           <RecruiterJobCard
-                          key={index}
                             profileInfo={profileInfo}
                             jobItem={jobItem}
                             jobApplications={jobApplications}
